@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="secondary" dark>
+    <v-app-bar app color="secondary" dark hide-on-scroll>
       <div class="d-flex align-center">
         <h1>ArtFolio</h1>
       </div>
