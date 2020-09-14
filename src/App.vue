@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-app-bar app color="secondary" dark>
+      <div class="d-flex align-center">
+        <h1>ArtFolio</h1>
+      </div>
+      <template v-slot:extension>
+        <v-tabs color="accent" align-with-title>
+          <v-tab to="/">Home</v-tab>
+          <v-tab to="/about">About</v-tab>
+          <v-tab to="/photos">Photos</v-tab>
+        </v-tabs>
+      </template>
+
+      <v-spacer></v-spacer>
+
+      <v-btn @click="$vuetify.theme.dark = !$vuetify.theme.dark" color="accent">Light</v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <v-fade-transition mode="out-in">
+        <router-view></router-view>
+      </v-fade-transition>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+html {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 </style>
