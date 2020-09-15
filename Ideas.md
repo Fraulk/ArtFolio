@@ -12,3 +12,4 @@
 * load original res button
 * use icon for dark theme swith
 * work on theming
+* 404 page

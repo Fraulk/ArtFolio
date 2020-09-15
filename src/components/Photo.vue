@@ -33,8 +33,16 @@
       </v-card>
     </div>
   </v-scroll-y-transition>-->
-  <a href="#" :style="`--w: ${width}; --h: ${height}; position: relative;`">
-    <img :src="`https://farm${farmId}.staticflickr.com/${serverId}/${photoId}_${secret}_z.jpg`" />
+  <a
+    @click="$router.push(`/photo/${photoId}`)"
+    :style="`--w: ${width}; --h: ${height}; position: relative;`"
+    ondragstart="return false;"
+  >
+    <img
+      height="249"
+      :src="`https://farm${farmId}.staticflickr.com/${serverId}/${photoId}_${secret}_z.jpg`"
+      loading="lazy"
+    />
     <div class="onImgHover" :style="`height: 3rem;`">{{ title }}</div>
   </a>
 </template>

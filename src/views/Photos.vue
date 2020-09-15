@@ -31,8 +31,10 @@
         :title="photo.title"
         :width="photo.width_n"
         :height="photo.height_n"
-        @fullscreen="fullscreen()"
       />
+    </div>
+    <div v-if="more" class="loadMoreBtn">
+      <v-btn @click="loadMorePhotos()" :loading="loading" x-large color="accent">Load more photos</v-btn>
     </div>
   </v-container>
 </template>
@@ -45,6 +47,9 @@ export default {
     photos: {},
     isFetched: false,
     show: false,
+    page: 1,
+    more: false,
+    loading: false,
   }),
   created() {
     this.$http
@@ -54,6 +59,7 @@ export default {
       .then((result) => {
         this.photos = result.data.photos;
         this.isFetched = true;
+        if (this.photos.page < this.photos.pages) this.more = true;
         console.log(this.photos);
       })
       .catch((err) => {
@@ -61,8 +67,27 @@ export default {
       });
   },
   methods: {
-    fullscreen() {
-      console.log("fullscreen");
+    loadMorePhotos() {
+      if (this.photos.page >= this.photos.pages) return;
+      this.loading = true;
+      this.page += 1;
+      this.$http
+        .get(
+          `https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=${this.$apiKey}&user_id=${this.$userId}&page=${this.page}&extras=url_n,o_dims&format=json&nojsoncallback=1`
+        )
+        .then((result) => {
+          this.photos.photo = this.photos.photo.concat(
+            result.data.photos.photo
+          );
+          this.photos.page = result.data.photos.page;
+          if (this.photos.page >= this.photos.pages) this.more = false;
+          this.isFetched = true;
+          this.loading = false;
+          console.log(this.photos);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   name: "Photos",
@@ -96,5 +121,11 @@ export default {
   --h: 1;
   content: "";
   flex-grow: 1000000;
+}
+
+.loadMoreBtn {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
 }
 </style>
