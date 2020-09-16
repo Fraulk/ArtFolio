@@ -34,6 +34,7 @@
     </div>
   </v-scroll-y-transition>-->
   <a
+    v-if="serverId != 0"
     @click="$router.push(`/photo/${photoId}`)"
     :style="`--w: ${width}; --h: ${height}; position: relative;`"
     ondragstart="return false;"
@@ -68,6 +69,7 @@ export default {
   position: relative;
   width: 100%;
   opacity: 0;
+  object-fit: cover;
   animation: fadeIn 1000ms forwards;
 }
 

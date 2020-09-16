@@ -52,6 +52,7 @@ export default {
     loading: false,
   }),
   created() {
+    document.title = "ArtFolio - Photos";
     this.$http
       .get(
         `https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=${this.$apiKey}&user_id=${this.$userId}&extras=url_n,o_dims&format=json&nojsoncallback=1`
