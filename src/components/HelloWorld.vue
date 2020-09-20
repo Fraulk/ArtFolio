@@ -2,7 +2,7 @@
   <v-container style="height: 75vh">
     <v-row v-if="isFetched" justify="center" class="text-center">
       <v-col cols="12">
-        <a :href="user.profileurl._content">
+        <a :href="user.profileurl._content" ondragstart="return false;">
           <v-avatar size="150">
             <v-img
               :src="`http://farm${user.iconfarm}.staticflickr.com/${user.iconserver}/buddyicons/${user.nsid}_r.jpg`"
@@ -24,9 +24,12 @@
 
         <p
           class="subheading font-weight-regular"
-        >ArtFolio is a website using Flickr API to fetch content from a user in particular</p>
+        >ArtFolio is a vuejs website using Flickr API to fetch content from a user in particular</p>
         <br />
         <a href="#">Source code</a>
+        <br />
+        <br />
+        <v-btn to="/photos" color="primary">Go to gallerie</v-btn>
       </v-col>
     </v-row>
   </v-container>

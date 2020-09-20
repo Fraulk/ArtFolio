@@ -29,7 +29,21 @@
       >See on flickr</v-btn>
     </v-row>
     <v-row align="center" justify="center">
-      <v-btn text color="accent" @click="size = 1; widthHeight = 4">Original resolution</v-btn>
+      <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            text
+            color="accent"
+            v-bind="attrs"
+            v-on="on"
+            @click="size = 1; widthHeight = 4"
+          >Original resolution</v-btn>
+        </template>
+        <span>
+          The original size is
+          <strong>{{ photo.size[photo.size.length - 1].width }}*{{ photo.size[photo.size.length - 1].height }}</strong>. It may take some time before appearing, depending on your connection speed
+        </span>
+      </v-tooltip>
       <v-btn text color="accent" @click="goBack()">Go back</v-btn>
     </v-row>
   </v-container>

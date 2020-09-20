@@ -10,6 +10,7 @@
           <v-tab to="/about">About</v-tab>
           <v-tab to="/photos">Photos</v-tab>
           <v-tab v-if="$route.name == 'Photo'" :to="$route.path">Photo</v-tab>
+          <v-tab to="/collections">Collections</v-tab>
         </v-tabs>
       </template>
 

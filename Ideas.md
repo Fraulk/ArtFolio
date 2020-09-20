@@ -13,3 +13,4 @@
 * use icon for dark theme swith
 * work on theming
 * 404 page
+* select with sizes

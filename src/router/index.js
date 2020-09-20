@@ -24,6 +24,11 @@ const routes = [
     component: () => import('../views/Photos.vue')
   },
   {
+    path: '/collections',
+    name: 'Collections',
+    component: () => import('../views/Collections.vue')
+  },
+  {
     path: '/photo/:id',
     name: 'Photo',
     component: () => import('../views/Photo.vue')
