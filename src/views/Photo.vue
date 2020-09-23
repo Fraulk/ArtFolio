@@ -2,13 +2,14 @@
   <v-container v-if="isFetched">
     <v-row style="display: grid" align="center" justify="center">
       <v-img
-        v-if="photo.size.length <= 12"
+        v-if="photo.size.length <= 13 && actualSize == ''"
         :src="photo.size[photo.size.length - size].source"
         :width="photo.size[photo.size.length - widthHeight].width"
         :height="photo.size[photo.size.length - widthHeight].height"
       />
+      <v-img v-else-if="actualSize != ''" :src="actualSize" />
       <v-img
-        v-else
+        v-else-if="photo.size.length > 13 && actualSize == ''"
         :src="(size == 1) ? photo.size[photo.size.length - 1].source : photo.size[10].source"
         :width="photo.size[10].width"
         :height="photo.size[10].height"
@@ -29,6 +30,17 @@
       >See on flickr</v-btn>
     </v-row>
     <v-row align="center" justify="center">
+      <v-col cols="2" sm="2">
+        <v-select
+          v-model="actualSize"
+          :items="sizeList"
+          item-text="label"
+          item-value="source"
+          label="Available sizes"
+        ></v-select>
+      </v-col>
+    </v-row>
+    <v-row align="center" justify="center">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -36,7 +48,7 @@
             color="accent"
             v-bind="attrs"
             v-on="on"
-            @click="size = 1; widthHeight = 4"
+            @click="size = 1; widthHeight = 5; actualSize = ''"
           >Original resolution</v-btn>
         </template>
         <span>
@@ -55,12 +67,17 @@ export default {
     photo: {},
     photoInfo: {},
     size: 4,
-    widthHeight: 4,
+    widthHeight: 5,
     isFetched: false,
+    items: [],
+    actualSize: "",
   }),
   computed: {
     photoId() {
       return this.$route.params.id;
+    },
+    sizeList() {
+      return this.photo.size;
     },
   },
   methods: {
@@ -72,6 +89,7 @@ export default {
         .then((result) => {
           this.photoInfo = result.data.photo;
           this.isFetched = true;
+          document.title = `ArtFolio - ${this.photoInfo.title._content}`;
           console.log(this.photoInfo);
         })
         .catch((err) => {

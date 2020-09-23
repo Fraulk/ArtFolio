@@ -1,15 +1,9 @@
 <template>
   <v-container v-if="isFetched">
-    <v-btn
-      color="accent"
-      text
-      @click="size = 'url_o'"
-      style="margin-bottom: 10px"
-    >Load images in original resolution</v-btn>
     <v-card
       v-for="collection in collections.photoset"
       :key="collection.id"
-      to="/"
+      :to="`/collection/${collection.id}`"
       class="mx-auto"
       style="margin-bottom: 10px;"
     >
@@ -18,12 +12,16 @@
         height="400px"
         :src="collection.primary_photo_extras[size]"
       >
-        <v-card-title>{{ collection.title._content }}</v-card-title>
+        <v-card-title>
+          <span v-html="collection.title._content"></span>
+        </v-card-title>
       </v-img>
 
       <v-card-subtitle class="pb-0">{{ collection.photos }} photos</v-card-subtitle>
 
-      <v-card-text class="text--primary">{{ collection.description._content }}</v-card-text>
+      <v-card-text class="text--primary">
+        <span v-html="collection.description._content"></span>
+      </v-card-text>
     </v-card>
   </v-container>
 </template>

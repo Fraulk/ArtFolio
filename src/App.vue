@@ -9,14 +9,15 @@
           <v-tab to="/">Welcome</v-tab>
           <v-tab to="/about">About</v-tab>
           <v-tab to="/photos">Photos</v-tab>
-          <v-tab v-if="$route.name == 'Photo'" :to="$route.path">Photo</v-tab>
           <v-tab to="/collections">Collections</v-tab>
+          <v-tab v-if="$route.name == 'Photo'" :to="$route.path">Photo</v-tab>
+          <v-tab v-if="$route.name == 'Collection'" :to="$route.path">Collection</v-tab>
         </v-tabs>
       </template>
 
       <v-spacer></v-spacer>
 
-      <v-btn @click="$vuetify.theme.dark = !$vuetify.theme.dark" color="accent">Light</v-btn>
+      <!-- <v-btn @click="$vuetify.theme.dark = !$vuetify.theme.dark" color="accent">Light</v-btn> -->
     </v-app-bar>
 
     <v-main>
