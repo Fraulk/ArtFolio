@@ -16,17 +16,18 @@
       </v-col>
 
       <v-col class="mb-4">
-        <h1
-          class="display-2 font-weight-bold mb-3"
-        >Welcome to {{ user.username._content }}'s Artfolio</h1>
+        <h1 class="display-2 font-weight-bold mb-3">
+          Welcome to {{ user.username._content }}'s Artfolio
+        </h1>
 
         <p v-html="user.description._content.replace(/\n/g, '<br />')"></p>
 
-        <p
-          class="subheading font-weight-regular"
-        >ArtFolio is a vuejs website using Flickr API to fetch content from a user in particular</p>
+        <p class="subheading font-weight-regular">
+          ArtFolio is a vuejs website using Flickr API to fetch content from a
+          user in particular
+        </p>
         <br />
-        <a href="#">Source code</a>
+        <a href="https://github.com/Fraulk/ArtFolio">Source code</a>
         <br />
         <br />
         <v-btn to="/photos" color="primary">Go to gallerie</v-btn>
