@@ -3,5 +3,3 @@
 ## Ideas
 
 ## Todos
-
-* select with sizes

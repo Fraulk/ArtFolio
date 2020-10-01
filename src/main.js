@@ -5,8 +5,8 @@ import router from './router'
 import axios from 'axios'
 
 Vue.config.productionTip = false
-Vue.prototype.$apiKey = '0ca822bd8f8216372f27904677012131'
-Vue.prototype.$userId = '142309877@N07'
+Vue.prototype.$apiKey = process.env.VUE_APP_API_KEY
+Vue.prototype.$userId = process.env.VUE_APP_USER_ID
 Vue.prototype.$http = axios
 
 //me: 164696274@N08
