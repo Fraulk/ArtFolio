@@ -27,7 +27,9 @@
           user in particular
         </p>
         <br />
-        <a href="https://github.com/Fraulk/ArtFolio">Source code</a>
+        <a href="https://github.com/Fraulk/ArtFolio" target="_blank"
+          >Source code</a
+        >
         <br />
         <br />
         <v-btn to="/photos" color="primary">Go to gallerie</v-btn>
